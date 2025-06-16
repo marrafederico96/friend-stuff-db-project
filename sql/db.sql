@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `expenses` (
     FOREIGN KEY (`payer_id`) REFERENCES users (`user_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `expense_contributinos` (
+CREATE TABLE IF NOT EXISTS `expense_contributions` (
     `participant_id` INT NOT NULL,
     `expense_id` INT NOT NULL,
     `amount_owed` DECIMAL(10, 2) NOT NULL,
