@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `events` (
     PRIMARY KEY (`event_id`),
     FOREIGN KEY (`group_id`) REFERENCES groups (`group_id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`location_id`),
-    CHECK (`end_date` >= `start_date`),
+    CHECK (`end_date` >= `start_date`)
 );
 
 CREATE TABLE IF NOT EXISTS `chat` (
