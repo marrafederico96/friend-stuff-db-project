@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `events` (
     `description` VARCHAR(255) NULL,
     PRIMARY KEY (`event_id`),
     FOREIGN KEY (`group_id`) REFERENCES groups (`group_id`),
-    FOREIGN KEY (`location_id`) REFERENCES locations (`location_id`)
+    FOREIGN KEY (`location_id`) REFERENCES locations (`location_id`),
+    CHECK (`end_date` >= `sart_date`),
 );
 
 CREATE TABLE IF NOT EXISTS `chat` (
@@ -106,7 +107,8 @@ CREATE TABLE IF NOT EXISTS `expenses` (
     `expense_date` DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`expense_id`),
     FOREIGN KEY (`event_id`) REFERENCES events (`event_id`),
-    FOREIGN KEY (`payer_id`) REFERENCES users (`user_id`)
+    FOREIGN KEY (`payer_id`) REFERENCES users (`user_id`),
+    CHECK (`amount` > 0)
 );
 
 CREATE TABLE IF NOT EXISTS `expense_contributions` (
@@ -115,5 +117,6 @@ CREATE TABLE IF NOT EXISTS `expense_contributions` (
     `amount_owed` DECIMAL(10, 2) NOT NULL,
     PRIMARY KEY (`participant_id`, `expense_id`),
     FOREIGN KEY (`participant_id`) REFERENCES users (`user_id`),
-    FOREIGN KEY (`expense_id`) REFERENCES expenses (`expense_id`)
+    FOREIGN KEY (`expense_id`) REFERENCES expenses (`expense_id`),
+    CHECK (`amount_owed` >= 0)
 );
