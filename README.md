@@ -1,2 +1,2 @@
 ### Friend Stuff DB
-Progetto unviersitario database relazionale
+Progetto universitario di un database relazionale
